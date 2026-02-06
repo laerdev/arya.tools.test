@@ -234,48 +234,70 @@
             scrollbar-color: var(--border-color) transparent;
         }
 
-/* Contenedor para poner Tono y Spicy al lado */
-        .selectors-inline {
-            display: flex;
-            align-items: flex-end; /* Alinea los elementos por la base */
-            gap: 20px;
-            margin-top: 10px;
-        }
+/* Contenedor principal para alinear ambos bloques */
+.selectors-inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 10px;
+}
 
-        .tone-section { flex: 3; } /* Los botones ocupan más espacio */
-        .spicy-section { flex: 1; min-width: 150px; } /* Las guindillas menos */
+.tone-section { flex: 2; }
+.spicy-section { flex: 1; }
 
-        /* Estilo Kawaii para las guindillas */
-        .spicy-selector {
-            display: flex;
-            gap: 8px;
-            margin-top: 5px;
-            justify-content: center;
-        }
+/* Estilo unificado para TODOS los botones de opción */
+.tone-card, .chili {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px; /* Altura fija unificada */
+    padding: 0 20px;
+    background: var(--option-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 5px 0px var(--border-color);
+    cursor: pointer;
+    box-sizing: border-box;
+}
 
-        .spicy-selector input { display: none; }
+/* Ajustes específicos para las guindillas */
+.spicy-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
 
-        .chili {
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 8px 12px;
-            background: var(--option-bg);
-            border: 3px solid var(--border-color);
-            border-radius: 18px;
-            transition: all 0.2s;
-            filter: grayscale(100%) opacity(0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-        }
+.chili {
+    min-width: 60px; /* Para que no sean demasiado estrechas */
+    filter: grayscale(100%) opacity(0.4);
+}
 
-/* Color especial para el nivel 0 (🌿) */
-.spicy-selector input#s0:checked + .chili {
+/* Estados seleccionados */
+.tone-option input:checked + .tone-card,
+.spicy-selector input:checked + .chili {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0px var(--button-hover);
     filter: grayscale(0%) opacity(1);
+}
+
+/* Colores específicos de selección */
+.tone-option input:checked + .tone-card {
+    background: var(--button-color);
+    border-color: var(--button-hover);
+    color: #2e7d32;
+}
+
+.spicy-selector input#s0:checked + .chili {
     background: #f1f8e9;
     border-color: #81c784;
-    box-shadow: 0 2px 0px #81c784;
+}
+
+.spicy-selector input:not(#s0):checked + .chili {
+    background: #fff5f5;
+    border-color: #ff8a80;
 }
     </style>
 </head>
@@ -311,7 +333,7 @@
     </div>
 
     <div class="spicy-section">
-        <label>Intensidad (Spicy)</label>
+        <label>Intensidad</label>
         <div class="spicy-selector">
             <input type="radio" name="spicy" value="0" id="s0" checked>
             <label for="s0" class="chili">🌿</label>
