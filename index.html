@@ -113,8 +113,26 @@
         }
 
         textarea {
+            width: 100%;
             min-height: 300px;
-            resize: vertical;
+            border: none !important;
+            background: transparent !important;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.1rem;
+            outline: none;
+            display: block;
+            padding-right: 5px;
+        }
+
+        .textarea-container {
+            width: 100%;
+            margin-top: 8px;
+            border: 4px solid var(--border-color);
+            border-radius: 25px;
+            background-color: #fffaf0;
+            box-sizing: border-box;
+            padding: 10px;
+            overflow: hidden;
         }
 
         button {
@@ -202,6 +220,14 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-color);
         }
+
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        textarea::-webkit-scrollbar-thumb {
+            border: 2px solid #fffaf0;
+        }
         
         * {
             scrollbar-width: thin;
@@ -238,7 +264,9 @@
     </div>
 
     <label>Texto:</label>
-    <textarea id="inputText" placeholder="Ej: Esta reunión es aburrida y podría haber sido un e-mail..."></textarea>
+    <div class="textarea-container">
+        <textarea id="inputText" placeholder="Ej: Esta reunión es aburrida y podría haber sido un e-mail..."></textarea>
+    </div>
 
     <button onclick="formalize()">Transformar!</button>
 
