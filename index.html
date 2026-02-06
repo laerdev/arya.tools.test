@@ -234,39 +234,49 @@
             scrollbar-color: var(--border-color) transparent;
         }
 
+/* Contenedor para poner Tono y Spicy al lado */
+        .selectors-inline {
+            display: flex;
+            align-items: flex-end; /* Alinea los elementos por la base */
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .tone-section { flex: 3; } /* Los botones ocupan más espacio */
+        .spicy-section { flex: 1; min-width: 150px; } /* Las guindillas menos */
+
+        /* Estilo Kawaii para las guindillas */
         .spicy-selector {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
-}
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+            justify-content: center;
+        }
 
-.spicy-selector input {
-    display: none;
-}
+        .spicy-selector input { display: none; }
 
-.chili {
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 10px 15px;
-    background: var(--option-bg);
-    border: 3px solid var(--border-color);
-    border-radius: 20px;
-    transition: all 0.2s;
-    filter: grayscale(100%) opacity(0.5); /* Apagadas por defecto */
-}
+        .chili {
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 8px 12px;
+            background: var(--option-bg);
+            border: 3px solid var(--border-color);
+            border-radius: 18px;
+            transition: all 0.2s;
+            filter: grayscale(100%) opacity(0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
 
-.spicy-selector input:checked + .chili {
-    filter: grayscale(0%) opacity(1); /* Color vibrante al seleccionar */
-    background: #ffebee;
-    border-color: #ef5350;
-    transform: scale(1.1);
-    box-shadow: 0 4px 0px #ef5350;
-}
-
-.chili:hover {
-    transform: scale(1.05);
-}
+        .spicy-selector input:checked + .chili {
+            filter: grayscale(0%) opacity(1);
+            background: #fff5f5;
+            border-color: #ff8a80;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #ff8a80;
+        }
     </style>
 </head>
 <body>
@@ -277,37 +287,43 @@
     <label>Clave API:</label>
     <input type="password" id="apiKey" placeholder="sk-..." />
 
-    <label>Cómo quieres sonar?</label>
-    <div class="tone-selector">
-        <label class="tone-option">
-            <input type="radio" name="tone" value="muy profesional, corporativo y educado" checked>
-            <span class="tone-card">👔 Profesional</span>
-        </label>
-        <label class="tone-option">
-            <input type="radio" name="tone" value="extremadamente amable, dulce y empático">
-            <span class="tone-card">🌸 Amable</span>
-        </label>
-        <label class="tone-option">
-            <input type="radio" name="tone" value="conciso, directo y sin rodeos">
-            <span class="tone-card">⚡ Directo</span>
-        </label>
-        <label class="tone-option">
-            <input type="radio" name="tone" value="entusiasta y divertido">
-            <span class="tone-card">🌈 Divertido</span>
-        </label>
-    </div>
+<div class="selectors-inline">
+        <div class="tone-section">
+            <label>¿Cómo quieres sonar?</label>
+            <div class="tone-selector">
+                <label class="tone-option">
+                    <input type="radio" name="tone" value="muy profesional, corporativo y educado" checked>
+                    <span class="tone-card">👔 Profesional</span>
+                </label>
+                <label class="tone-option">
+                    <input type="radio" name="tone" value="extremadamente amable, dulce y empático">
+                    <span class="tone-card">🌸 Amable</span>
+                </label>
+                <label class="tone-option">
+                    <input type="radio" name="tone" value="conciso, directo y sin rodeos">
+                    <span class="tone-card">⚡ Directo</span>
+                </label>
+                <label class="tone-option">
+                    <input type="radio" name="tone" value="entusiasta y divertido">
+                    <span class="tone-card">🌈 Divertido</span>
+                </label>
+            </div>
+        </div>
 
-    <label>Nivel de intensidad (Spicy):</label>
-<div class="spicy-selector">
-    <input type="radio" name="spicy" value="1" id="s1" checked>
-    <label for="s1" class="chili">🌶️</label>
-    
-    <input type="radio" name="spicy" value="2" id="s2">
-    <label for="s2" class="chili">🌶️🌶️</label>
-    
-    <input type="radio" name="spicy" value="3" id="s3">
-    <label for="s3" class="chili">🌶️🌶️🌶️</label>
-</div>
+        <div class="spicy-section">
+            <label>Spicy</label>
+            <div class="spicy-selector">
+                <input type="radio" name="spicy" value="1" id="s1" checked>
+                <label for="s1" class="chili">🌶️</label>
+                
+                <input type="radio" name="spicy" value="2" id="s2">
+                <label for="s2" class="chili">🌶️🌶️</label>
+                
+                <input type="radio" name="spicy" value="3" id="s3">
+                <label for="s3" class="chili">🌶️🌶️🌶️</label>
+            </div>
+        </div>
+    </div>
 
     <label>Texto:</label>
     <div class="textarea-container">
