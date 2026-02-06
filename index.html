@@ -74,14 +74,21 @@
             font-weight: 600;
             transition: all 0.2s;
             display: inline-block;
+            box-shadow: 0 5px 0px var(--border-color);
+            margin-bottom: 5px;
         }
 
         .tone-option input:checked + .tone-card {
             background: var(--button-color);
             border-color: var(--button-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 0px var(--button-hover);
+            transform: translateY(4px);
+            box-shadow: 0 1px 0px var(--button-hover);
             color: #2e7d32;
+        }
+
+        .tone-option:hover .tone-card {
+            background: #fff;
+            border-color: var(--button-hover);
         }
 
         label {
@@ -180,15 +187,15 @@
     <label>Cómo quieres sonar?</label>
     <div class="tone-selector">
         <label class="tone-option">
-            <input type="radio" name="tone" value="profesional y corporativo" checked>
+            <input type="radio" name="tone" value="muy profesional, corporativo y educado" checked>
             <span class="tone-card">👔 Profesional</span>
         </label>
         <label class="tone-option">
-            <input type="radio" name="tone" value="amable, dulce y empático">
+            <input type="radio" name="tone" value="extremadamente amable, dulce y empático">
             <span class="tone-card">🌸 Amable</span>
         </label>
         <label class="tone-option">
-            <input type="radio" name="tone" value="conciso y directo">
+            <input type="radio" name="tone" value="conciso, directo y sin rodeos">
             <span class="tone-card">⚡ Directo</span>
         </label>
         <label class="tone-option">
