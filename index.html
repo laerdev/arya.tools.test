@@ -330,15 +330,19 @@
             });
 
             const data = await response.json();
-            if (data.error) showAlert("Error: " + data.error.message);
-            else outputDiv.textContent = data.choices[0].message.content;
-            setTimeout(() => {
+
+            if (data.error) {
+                showAlert("Error: " + data.error.message);
+            } else {
+                outputDiv.textContent = data.choices[0].message.content;
+
+                setTimeout(() => {
                     window.scrollTo({
                         top: document.body.scrollHeight,
                         behavior: 'smooth'
                     });
                 }, 100);
-            }
+            } 
         } catch (error) {
             showAlert("Error de conexión ☁️");
         }
