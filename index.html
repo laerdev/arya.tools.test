@@ -50,7 +50,6 @@
             text-shadow: 2px 2px 0px #fff;
         }
 
-        /* Alineación horizontal de Tono e Intensidad */
         .selectors-inline {
             display: flex;
             align-items: flex-start;
@@ -61,7 +60,6 @@
         .tone-section { flex: 2; }
         .spicy-section { flex: 1; }
 
-        /* Ocultar botones de radio en TODO el documento */
         input[type="radio"] {
             display: none !important;
         }
@@ -78,7 +76,6 @@
             cursor: pointer;
         }
 
-        /* Estilo unificado para botones (Píldoras) */
         .tone-card, .chili {
             display: inline-flex;
             align-items: center;
@@ -101,12 +98,10 @@
             filter: grayscale(100%) opacity(0.4);
         }
 
-        /* Efectos de Hover */
         .tone-option:hover .tone-card, .chili:hover {
             background: #fff;
         }
 
-        /* Estados Seleccionados (Efecto presionado) */
         input:checked + .tone-card,
         input:checked + .chili {
             transform: translateY(4px);
@@ -114,7 +109,6 @@
             filter: grayscale(0%) opacity(1);
         }
 
-        /* Colores específicos de selección */
         input:checked + .tone-card {
             background: var(--button-color);
             border-color: var(--button-hover);
@@ -249,7 +243,6 @@
             font-size: 1.1rem; 
         }
 
-        /* --- Scrollbars Flotantes --- */
         ::-webkit-scrollbar { width: 12px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb {
@@ -378,7 +371,13 @@ async function formalize() {
     container.style.display = 'block';
     outputDiv.textContent = "Cocinando el mensaje... 🍳";
 
-    // Scroll suave al iniciar la carga
+    const mainBtn = document.querySelector('button[onclick="formalize()"]');
+    mainBtn.disabled = true;
+    mainBtn.textContent = "Transformando...";
+
+    mainBtn.disabled = false;
+    mainBtn.textContent = "Transformar!";
+
     setTimeout(() => {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }, 50);
