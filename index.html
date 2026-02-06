@@ -182,6 +182,31 @@
         }
 
         .copy-btn { background-color: var(--copy-btn); color: #827717; border-color: #fbc02d; box-shadow: 0 4px 0px #fbc02d; font-size: 1.1rem; }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border: 3px solid var(--bg-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) var(--bg-color);
+        }
     </style>
 </head>
 <body>
