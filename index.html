@@ -233,6 +233,40 @@
             scrollbar-width: thin;
             scrollbar-color: var(--border-color) transparent;
         }
+
+        .spicy-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.spicy-selector input {
+    display: none;
+}
+
+.chili {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    background: var(--option-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 20px;
+    transition: all 0.2s;
+    filter: grayscale(100%) opacity(0.5); /* Apagadas por defecto */
+}
+
+.spicy-selector input:checked + .chili {
+    filter: grayscale(0%) opacity(1); /* Color vibrante al seleccionar */
+    background: #ffebee;
+    border-color: #ef5350;
+    transform: scale(1.1);
+    box-shadow: 0 4px 0px #ef5350;
+}
+
+.chili:hover {
+    transform: scale(1.05);
+}
     </style>
 </head>
 <body>
@@ -262,6 +296,18 @@
             <span class="tone-card">🌈 Divertido</span>
         </label>
     </div>
+
+    <label>Nivel de intensidad (Spicy):</label>
+<div class="spicy-selector">
+    <input type="radio" name="spicy" value="1" id="s1" checked>
+    <label for="s1" class="chili">🌶️</label>
+    
+    <input type="radio" name="spicy" value="2" id="s2">
+    <label for="s2" class="chili">🌶️🌶️</label>
+    
+    <input type="radio" name="spicy" value="3" id="s3">
+    <label for="s3" class="chili">🌶️🌶️🌶️</label>
+</div>
 
     <label>Texto:</label>
     <div class="textarea-container">
@@ -305,6 +351,13 @@
         const text = document.getElementById('inputText').value;
         const container = document.getElementById('output-container');
         const outputDiv = document.getElementById('output');
+        const spicy = document.querySelector('input[name="spicy"]:checked').value;
+
+        const intensityMap = {
+            "1": "cambios muy sutiles y menores, manteniéndolo muy fiel al original",
+            "2": "cambios moderados para ajustarse mejor al tono y ser reconocible",
+            "3": "una reescritura completa y audaz para maximizar el tono elegido".
+    };
 
         if (!apiKey) { showAlert("¡Ups! Olvidaste poner la clave API"); return; }
         if (!text) { showAlert("Escribe algo para que pueda ayudarte"); return; }
@@ -319,21 +372,40 @@
             });
         }, 100);
         
-        try {
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [
-                        { role: "system", content: `Eres un asistente experto en comunicación. Tu tarea es reescribir el texto del usuario para que suene ${tone}. Mantén el idioma del texto original pero adapta el vocabulario, mantén también los párrafos y la estructura si el texto es largo.` },
-                        { role: "user", content: text }
-                    ]
-                })
-            });
+       try {
+           const response = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${apiKey}`
+              },
+              body: JSON.stringify({
+                 model: "gpt-3.5-turbo",
+                 messages: [{
+                       role: "system",
+                       content: "Eres un asistente profesional de redacción."
+                    },
+                    {
+                       role: "user",
+                       content: `Reescribe el texto proporcionado por el usuario para que se ajuste al siguiente tono: ${tone}.
+                       Intensity level: ${intensityMap[spicy]}.
+                
+                Reglas:
+                - Asegúrate de responder en el mismo idioma que el texto original pero mantén el significado y la intención original.
+                - No añadas información nueva ni elimines detalles importantes.
+                - Ajusta el vocabulario, la estructura y el estilo para reflejar el tono solicitado.
+                - Elimina lenguaje emocional, grosero, pasivo-agresivo o informal, salvo que el tono lo requiera explícitamente.
+                - Mantén el texto claro, conciso y natural.
+                - Regla de intensidad: aplica un enfoque ${intensityMap[spicy]} a la transformación.
+                - No expliques los cambios realizados.
+                - Devuelve únicamente el texto reescrito.
+                
+                Texto a reescribir:
+                """${text}"""`
+                    }
+                 ]
+              })
+           });
 
             const data = await response.json();
 
