@@ -203,43 +203,42 @@
         .copy-btn { background-color: var(--copy-btn); color: #827717; border-color: #fbc02d; box-shadow: 0 4px 0px #fbc02d; font-size: 1.1rem; }
 
         ::-webkit-scrollbar {
-            width: 14px;
-            height: 14px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-            border-radius: 100px;
-            margin: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border: 3px solid var(--bg-color);
-            border-radius: 100px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
+            width: 16px;
+            height: 16px;
         }
 
-        textarea::-webkit-scrollbar {
-            width: 8px;
+        ::-webkit-scrollbar-track {
+            background-color: var(--bg-color);
+            border-radius: 100px;
+            border: 4px solid var(--bg-color);
         }
-        
-        textarea::-webkit-scrollbar-thumb {
-            border: 2px solid #fffaf0;
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+            border-radius: 100px;
+            border: 4px solid var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--accent-color);
         }
 
         .textarea-container textarea::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         .textarea-container textarea::-webkit-scrollbar-track {
-            background-color: #fffaf0;
+            background-color: #f0ebe4;
             border-radius: 100px;
+            margin: 10px;
         }
-        
+
+        .textarea-container textarea::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+            border-radius: 100px;
+            border: 2px solid #f0ebe4;
+        }
+
         * {
             scrollbar-width: thin;
             scrollbar-color: var(--border-color) var(--bg-color);
